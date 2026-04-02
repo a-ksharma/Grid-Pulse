@@ -1,0 +1,5 @@
+chainlit
+langchain-mcp-adapters
+langchain-google-genai
+langchain-core
+python-dotenv
