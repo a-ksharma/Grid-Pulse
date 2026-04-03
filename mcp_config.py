@@ -1,11 +1,10 @@
 from datetime import datetime
+from urllib import response
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_core.messages import ToolMessage
 import json
 
-# ─────────────────────────────────────────────
 # SERVERS CONFIG
-# ─────────────────────────────────────────────
 
 SERVERS = {
     'LedgerFlow': {
@@ -15,9 +14,9 @@ SERVERS = {
 }
 
 
-# ─────────────────────────────────────────────
+
 # SYSTEM PROMPT
-# ─────────────────────────────────────────────
+
 def get_system_prompt(user_id: str) -> str:
     today = datetime.now().strftime("%d-%m-%Y")
     return f"""Today's date is {today}. The current user's ID is: {user_id}. Always pass this exact value as the user_id argument to every tool call without exception.
@@ -27,9 +26,8 @@ You are a helpful general purpose assistant. You have access to a set of tools v
 Use these tools whenever the user's request relates to them. For everything else, answer naturally from your own knowledge like a general purpose assistant."""
 
 
-# ─────────────────────────────────────────────
+
 # SHARED AGENT LOGIC
-# ─────────────────────────────────────────────
 
 async def run_agent_turn(llm_with_tools, named_tools, messages, on_tool_call=None):
     """Run one full agent turn — handles chained tool calls automatically.
@@ -45,9 +43,18 @@ async def run_agent_turn(llm_with_tools, named_tools, messages, on_tool_call=Non
         response = await llm_with_tools.ainvoke(messages)
         messages.append(response)
 
-        # No tool calls means we have the final text response
         if not getattr(response, 'tool_calls', None):
-            return response.content, messages
+            content = response.content
+            if content is None:
+                content = "I couldn't generate a response. Please try again."
+            elif isinstance(content, list):
+                content = " ".join(
+                    block.get("text", "") if isinstance(block, dict) else str(block)
+                    for block in content
+                )
+            elif not isinstance(content, str):
+                content = str(content)
+            return content, messages
 
         # Execute all tool calls in this turn
         for tc in response.tool_calls:

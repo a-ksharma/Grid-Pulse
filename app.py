@@ -8,17 +8,10 @@ import os
 load_dotenv()
 
 
-# ─────────────────────────────────────────────
 # GOOGLE OAUTH
-# ─────────────────────────────────────────────
 
 @cl.oauth_callback
-def oauth_callback(
-    provider_id: str,
-    token: str,
-    raw_user_data: dict,
-    default_user: cl.User,
-) -> cl.User | None:
+def oauth_callback(provider_id: str, token: str, raw_user_data: dict, default_user: cl.User,) -> cl.User | None:
     """Called after Google OAuth login. Return user object or None to reject."""
     if provider_id == "google":
         return cl.User(
@@ -32,9 +25,7 @@ def oauth_callback(
     return None
 
 
-# ─────────────────────────────────────────────
 # CHAT START
-# ─────────────────────────────────────────────
 
 @cl.on_chat_start
 async def on_chat_start():
@@ -67,9 +58,7 @@ async def on_chat_start():
         await loading.update()
 
 
-# ─────────────────────────────────────────────
 # ON MESSAGE
-# ─────────────────────────────────────────────
 
 @cl.on_message
 async def on_message(message: cl.Message):
@@ -85,6 +74,7 @@ async def on_message(message: cl.Message):
 
     thinking_msg = cl.Message(content="")
     await thinking_msg.send()
+    
 
     try:
         async def on_tool_call(tool_name, tool_args):
@@ -99,7 +89,7 @@ async def on_message(message: cl.Message):
             on_tool_call=on_tool_call
         )
 
-        thinking_msg.content = reply
+        thinking_msg.content = reply if isinstance(reply, str) else str(reply)
         await thinking_msg.update()
 
         cl.user_session.set("messages", messages)
