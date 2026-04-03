@@ -9,18 +9,6 @@ import json
 load_dotenv()
 
 SERVERS = {
-    'Arithmetic Operations': {
-        "transport": "stdio",
-        "command": "C:/Users/ayush/AppData/Local/Programs/Python/Python313/Scripts/uv.exe",
-        "args": [
-            "run",
-            "--with",
-            "fastmcp",
-            "fastmcp",
-            "run",
-            "D:/Ayush/test_remote_server/main.py"
-        ]
-    },
     'LedgerFlow': {
         "transport": "streamable_http",
         "url": "https://ledger-flow-mcp-339446203512.asia-south1.run.app/mcp"
