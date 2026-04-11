@@ -3,9 +3,16 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from mcp_config import get_system_prompt, run_agent_turn, setup_client
+from chainlit.server import app as fastapi_app
+from fastapi.responses import JSONResponse
 import os
 
 load_dotenv()
+
+@fastapi_app.get("/health")
+async def health():
+    return JSONResponse({"status": "ok"})
+
 
 
 # GOOGLE OAUTH
