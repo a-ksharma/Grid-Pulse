@@ -46,7 +46,7 @@ async def on_chat_start():
     try:
         tools, named_tools = await setup_client()
 
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+        llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview", temperature=0)
         llm_with_tools = llm.bind_tools(tools)
 
         cl.user_session.set("llm_with_tools", llm_with_tools)

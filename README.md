@@ -76,7 +76,6 @@ users/{user_id}/expenses/
 Grid-Pulse/
 ├── app.py              ← Chainlit app with Google OAuth
 ├── mcp_config.py       ← Shared MCP server config and agent logic
-├── client1.py          ← CLI client for local testing
 ├── chainlit.md         ← Chainlit readme shown in the UI
 ├── Dockerfile          ← For Render deployment
 ├── requirements.txt    ← Python dependencies
