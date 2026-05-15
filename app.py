@@ -1,6 +1,6 @@
 import chainlit as cl
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from mcp_config import get_system_prompt, run_agent_turn, setup_client
 from chainlit.server import app as fastapi_app
@@ -46,7 +46,11 @@ async def on_chat_start():
     try:
         tools, named_tools = await setup_client()
 
-        llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview", temperature=0)
+        llm = ChatGroq(
+            model="llama-3.3-70b-versatile",
+            temperature=0,
+            api_key=os.environ.get("GROQ_API_KEY")
+)
         llm_with_tools = llm.bind_tools(tools)
 
         cl.user_session.set("llm_with_tools", llm_with_tools)

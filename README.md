@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=flat-square&logo=python)
 ![Chainlit](https://img.shields.io/badge/Chainlit-UI-FF4B4B?style=flat-square)
-![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-4285F4?style=flat-square&logo=google)
+![Llama](https://img.shields.io/badge/Llama-3.3%2070B%20Versatile-8A2BE2?style=flat-square)
 ![LangChain](https://img.shields.io/badge/LangChain-MCP%20Adapters-1C3C3C?style=flat-square)
 ![MCP](https://img.shields.io/badge/Protocol-MCP-purple?style=flat-square)
 ![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=flat-square&logo=render)
@@ -87,29 +87,54 @@ Grid-Pulse/
 
 ## Running Locally
 
-**Prerequisites:** Python 3.13, pip or uv
+**Prerequisites:** Python 3.13, uv
 
 **Step 1 — Clone and install:**
 ```bash
 git clone https://github.com/a-ksharma/Grid-Pulse.git
 cd Grid-Pulse
-pip install -r requirements.txt
 ```
 
-**Step 2 — Set up `.env`:**
+**Step 2 — Create Virtual Environment**
+
+```bash
+uv venv
+```
+
+**Step 3 — Activate the environment:**
+
+### Mac/Linux
+
+```bash
+source .venv/bin/activate
+```
+
+### Windows
+
+```powershell
+.venv\Scripts\activate
+```
+
+**Step 4 — Install Dependencies**
+
+```bash
+uv sync
+```
+
+**Step 5 — Set up `.env`:**
 ```env
-GOOGLE_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_gemini_api_key
 OAUTH_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 OAUTH_GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
 CHAINLIT_AUTH_SECRET=your_random_secret
 ```
 
-**Step 3 — Run:**
+**Step 6 — Run:**
 ```bash
-chainlit run app.py --port 8001
+chainlit run app.py --port 8000
 ```
 
-Open `http://localhost:8001` in your browser.
+Open `http://localhost:8000` in your browser.
 
 ---
 

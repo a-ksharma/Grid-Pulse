@@ -2,13 +2,18 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-# Install dependencies
-COPY Requirements.txt .
-RUN pip install --no-cache-dir -r Requirements.txt
+# Install uv
+RUN pip install uv
 
-# Copy all app files
+# Copy dependency files first
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies
+RUN uv sync --frozen
+
+# Copy project files
 COPY . .
 
 EXPOSE 10000
 
-CMD ["chainlit", "run", "app.py", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["uv", "run", "chainlit", "run", "app.py", "--host", "0.0.0.0", "--port", "10000"]
