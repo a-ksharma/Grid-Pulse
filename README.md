@@ -8,7 +8,7 @@
 ![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=flat-square&logo=render)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**Grid-Pulse** is an AI-powered expense tracking chatbot built on top of the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow). It uses Google Gemini 2.5 Flash as the LLM, LangChain MCP Adapters to connect to remote MCP tools, and Chainlit for the chat UI.
+**Grid-Pulse** is an AI-powered expense tracking chatbot built on top of the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow). It uses Llama 3.3 70b versatile as the LLM, LangChain MCP Adapters to connect to remote MCP tools, and Chainlit for the chat UI.
 
 🚀 **Live Demo:** [https://grid-pulse-zuoy.onrender.com](https://grid-pulse-zuoy.onrender.com)
 
@@ -42,7 +42,7 @@ Just chat naturally:
 
 | Layer | Technology |
 |---|---|
-| LLM | Google Gemini 2.5 Flash |
+| LLM | llama 3.3-70b versatile |
 | Chat UI | Chainlit |
 | MCP Client | LangChain MCP Adapters |
 | Authentication | Google OAuth 2.0 |
@@ -59,7 +59,7 @@ Just chat naturally:
 User (Browser)
       ↓  Google OAuth
 Chainlit UI (Render)
-      ↓  LangChain + Gemini 2.5 Flash
+      ↓  LangChain + llama 3.3-70b versatile
 MCP Client (langchain-mcp-adapters)
       ↓  Streamable HTTP
 LedgerFlow MCP Server (Google Cloud Run)
@@ -123,7 +123,7 @@ uv sync
 
 **Step 5 — Set up `.env`:**
 ```env
-GROQ_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_llama_api_key
 OAUTH_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 OAUTH_GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
 CHAINLIT_AUTH_SECRET=your_random_secret
@@ -142,22 +142,10 @@ Open `http://localhost:8000` in your browser.
 
 | Variable | Description |
 |---|---|
-| `GOOGLE_API_KEY` | Gemini API key from Google AI Studio |
+| `GROQ_API_KEY` | llama API key from GROQ |
 | `OAUTH_GOOGLE_CLIENT_ID` | Google OAuth 2.0 Client ID |
 | `OAUTH_GOOGLE_CLIENT_SECRET` | Google OAuth 2.0 Client Secret |
 | `CHAINLIT_AUTH_SECRET` | Random secret for Chainlit session signing |
-
----
-
-## CLI Mode
-
-For local testing without the UI, use the CLI client:
-
-```bash
-python client1.py
-```
-
-This runs the same agent logic in your terminal — useful for quick testing without spinning up the full Chainlit interface.
 
 ---
 
