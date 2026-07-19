@@ -9,7 +9,7 @@ import json
 SERVERS = {
     'LedgerFlow': {
         "transport": "streamable_http",
-        "url": "https://ledger-flow-mcp-hz5uqwqwoq-el.a.run.app/mcp"
+        "url": "https://a-ksharma-ledgerflow.hf.space/mcp"
     }
 }
 
