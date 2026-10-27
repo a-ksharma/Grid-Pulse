@@ -47,10 +47,10 @@ async def on_chat_start():
         tools, named_tools = await setup_client()
 
         llm = ChatGroq(
-            model="llama-3.3-70b-versatile",
-            temperature=0,
-            api_key=os.environ.get("GROQ_API_KEY")
-)
+                model="openai/gpt-oss-120b",
+                temperature=0,
+                api_key=os.environ.get("GROQ_API_KEY"))
+        
         llm_with_tools = llm.bind_tools(tools)
 
         cl.user_session.set("llm_with_tools", llm_with_tools)

@@ -2,13 +2,13 @@
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=flat-square&logo=python)
 ![Chainlit](https://img.shields.io/badge/Chainlit-UI-FF4B4B?style=flat-square)
-![Llama](https://img.shields.io/badge/Llama-3.3%2070B%20Versatile-8A2BE2?style=flat-square)
+![OpenAI](https://img.shields.io/badge/OpenAI-gpt--oss--120b-8A2BE2?style=flat-square&logo=openai)
 ![LangChain](https://img.shields.io/badge/LangChain-MCP%20Adapters-1C3C3C?style=flat-square)
 ![MCP](https://img.shields.io/badge/Protocol-MCP-purple?style=flat-square)
 ![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=flat-square&logo=render)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**Grid-Pulse** is an AI-powered expense tracking chatbot built on top of the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow). It uses Llama 3.3 70b versatile as the LLM, LangChain MCP Adapters to connect to remote MCP tools, and Chainlit for the chat UI.
+**Grid-Pulse** is an AI-powered expense tracking chatbot built on top of the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow). It uses GPT OSS 120B as the LLM, LangChain MCP Adapters to connect to remote MCP tools, and Chainlit for the chat UI.
 
 🚀 **Live Demo:** [https://grid-pulse-zuoy.onrender.com](https://grid-pulse-zuoy.onrender.com)
 
@@ -42,11 +42,11 @@ Just chat naturally:
 
 | Layer | Technology |
 |---|---|
-| LLM | llama 3.3-70b versatile |
+| LLM | GPT OSS 120B |
 | Chat UI | Chainlit |
 | MCP Client | LangChain MCP Adapters |
 | Authentication | Google OAuth 2.0 |
-| MCP Server | LedgerFlow (Cloud Run) |
+| MCP Server | LedgerFlow (HuggingFace) |
 | Database | Google Cloud Firestore |
 | Deployment | Render |
 | Language | Python 3.13 |
@@ -59,10 +59,10 @@ Just chat naturally:
 User (Browser)
       ↓  Google OAuth
 Chainlit UI (Render)
-      ↓  LangChain + llama 3.3-70b versatile
+      ↓  LangChain + GPT OSS 120B
 MCP Client (langchain-mcp-adapters)
       ↓  Streamable HTTP
-LedgerFlow MCP Server (Google Cloud Run)
+LedgerFlow MCP Server (HuggingFace)
       ↓
 Google Cloud Firestore
 users/{user_id}/expenses/
@@ -123,7 +123,7 @@ uv sync
 
 **Step 5 — Set up `.env`:**
 ```env
-GROQ_API_KEY=your_llama_api_key
+GROQ_API_KEY=your_api_key
 OAUTH_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 OAUTH_GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
 CHAINLIT_AUTH_SECRET=your_random_secret
@@ -142,7 +142,7 @@ Open `http://localhost:8000` in your browser.
 
 | Variable | Description |
 |---|---|
-| `GROQ_API_KEY` | llama API key from GROQ |
+| `GROQ_API_KEY` | API key from GROQ |
 | `OAUTH_GOOGLE_CLIENT_ID` | Google OAuth 2.0 Client ID |
 | `OAUTH_GOOGLE_CLIENT_SECRET` | Google OAuth 2.0 Client Secret |
 | `CHAINLIT_AUTH_SECRET` | Random secret for Chainlit session signing |

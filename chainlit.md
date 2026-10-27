@@ -43,9 +43,9 @@ Grid-Pulse was built by **Ayush Kumar Sharma** as part of a project exploring AI
 
 - GitHub: [@a-ksharma](https://github.com/a-ksharma)
 - LinkedIn: [@ayush-ksharma](https://www.linkedin.com/in/ayush-ksharma)
-- Server: Powered by the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow) running on Google Cloud Run
+- Server: Powered by the [LedgerFlow MCP Server](https://github.com/a-ksharma/LedgerFlow) running on Hugging Face
 - Database: Google Cloud Firestore
-- LLM: Llama 3.3 70b versatile
+- LLM: GPT OSS 120B
 
 ---
 
